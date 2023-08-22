@@ -1,9 +1,10 @@
-function createCard(name, description, pictureUrl, s, e) {
+function createCard(name, description, venue, pictureUrl, s, e) {
     return `
       <div class="card shadow p-3 mb-5 bg-body-tertiary rounded">
         <img src="${pictureUrl}" class="card-img-top">
         <div class="card-body">
           <h5 class="card-title">${name}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">${venue}</h6>
           <p class="card-text">${description}</p>
         </div>
         <div class="card-footer">
@@ -34,12 +35,13 @@ window.addEventListener('DOMContentLoaded', async () => {
                 const detailResponse = await fetch(detailUrl);
                 if (detailResponse.ok) {
                     const details = await detailResponse.json();
-                    const title = details.conference.name;
+                    const name = details.conference.name;
+                    const venue = details.conference.location.name;
                     const description = details.conference.description;
                     const pictureUrl = details.conference.location.picture_url;
                     const startDate = new Date(details.conference.starts);
                     const endDate = new Date(details.conference.ends);
-                    const html = createCard(title, description, pictureUrl, startDate, endDate);
+                    const html = createCard(name, description, venue, pictureUrl, startDate, endDate);
                     // const column = document.querySelector('div.col');
                     columns[counter].innerHTML += html;
                 }
