@@ -22,7 +22,14 @@ window.addEventListener('DOMContentLoaded', async () => {
         const response = await fetch(url);
 
         if(!response.ok) {
-            // figure out what to do
+            const errorMessage = `
+                <div class="alert alert-info" role="alert">
+                    Warning: Invalid URL
+                </div>`;
+            const errorContainer = document.createElement("div");
+            errorContainer.innerHTML = errorMessage;
+            // does not work yet
+            document.body.header.insertAdjacentHTML('beforebegin', errorContainer);
 
         } else {
             const data = await response.json();
