@@ -1,11 +1,15 @@
 window.addEventListener('DOMContentLoaded', async () => {
+
     const url = "http://localhost:8000/api/states/"
 
     const state_response = await fetch(url);
+
     if (state_response.ok) {
+
         const data = await state_response.json();
 
         const selectTag = document.querySelector('#state');
+
         for (let state of data.states) {
             // Create an 'option' element
             const optionTag = document.createElement('option');
